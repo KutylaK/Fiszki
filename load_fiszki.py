@@ -1,5 +1,6 @@
 import shelve
 import random
+import glob
 
 def readKey(n):
     polka = shelve.open(n)    
@@ -11,6 +12,13 @@ def readValue(n, s):
     a = polka[s]
     polka.close()
     return a
+
+def getCategories():
+    mylist = [f for f in glob.glob("*.dat")]
+    mylist1 = []
+    for item in mylist:        
+        mylist1.append(item.replace('.dat',''))    
+    return mylist1
 
 
 

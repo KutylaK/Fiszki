@@ -5,6 +5,7 @@ import add_fiszka as addFisz
 import load_fiszki as loadFisz
 
 
+
 def showCorrect(): 
     correct["text"]=loadFisz.readValue(variable.get(), task["text"])
     if (correct["text"] == userInput.get()):        
@@ -36,7 +37,8 @@ label.grid(row=0,column=0,sticky=W)
 variable = StringVar(okno)
 
 
-w = OptionMenu(okno, variable, "one", "two", "three")
+
+w = OptionMenu(okno, variable, *loadFisz.getCategories())
 w.grid(row=1,column=0)
 
 
