@@ -3,6 +3,7 @@ import shelve, random
 import add_category as addCat
 import add_fiszka as addFisz
 import load_fiszki as loadFisz
+import glob
 
 
 def showCorrect(): 
@@ -18,8 +19,10 @@ def goNext():
     task["text"]=loadFisz.readKey(variable.get())
 
 def add_category():
+    addCat.create("okno")
+
+def add_fisz():
     addFisz.create("okno")
-    #addCat.create("okno")
 
 
 okno=Tk()
@@ -36,9 +39,9 @@ label.grid(row=0,column=0,sticky=W)
 variable = StringVar(okno)
 
 
-w = OptionMenu(okno, variable, "one", "two", "three")
-w.grid(row=1,column=0)
 
+w = OptionMenu(okno, variable, *loadFisz.getCategories())
+w.grid(row=1,column=0)
 
 
 
@@ -52,13 +55,17 @@ addCategoryButton = Button(text="Dodaj kategorie")
 addCategoryButton.grid(row=0,column=5)
 addCategoryButton["command"]=add_category
 
+addFiszButton = Button(text="Dodaj fiszke")
+addFiszButton.grid(row=0,column=6)
+addFiszButton["command"]=add_fisz
+
+correct =  Label(okno)
+correct.grid(row =3, column=3)
 
 checkButton = Button(text="Sprawdz")
 checkButton.grid(row=1,column=5)
 checkButton["command"]=showCorrect
-
-correct =  Label(okno)
-correct.grid(row =3, column=3)
+#checkButton['state']=
 
 nextButton = Button(text="Następna fiszka")
 nextButton.grid(row=3,column=5)
